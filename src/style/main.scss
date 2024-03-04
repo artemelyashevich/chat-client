@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@600&family=Montserrat:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Geologica', sans-serif;
+}
+
+p,
+li,
+a,
+label {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@import "./auth";
