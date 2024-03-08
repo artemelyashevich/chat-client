@@ -1,20 +1,23 @@
 import { Action, PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IAuth } from "../../types"
-import { instance } from "../../axios";
+import { instance } from "../../axios"
+
+const apiCall = async (path: string, user: IAuth): Promise<string> => {
+    const response = await instance.post(path, user)
+    return response.data
+}
 
 export const registerUser = createAsyncThunk<string, IAuth>(
     'user/registerUser',
     async (user) => {
-        const response = await instance.post("/register", user)
-        return response.data
+        return apiCall('/register', user)
     }
 )
 
 export const loginUser = createAsyncThunk<string, IAuth>(
     'user/loginUser',
     async (user) => {
-        const response = await instance.post("/login", user)
-        return response.data
+        return apiCall('/login', user)
     }
 )
 
@@ -42,6 +45,8 @@ const userSlice = createSlice({
     reducers: {
         logout(state) {
             state.isAuth = false
+            console.log(localStorage.getItem("@@remember-user"));
+
             localStorage.removeItem("@@remember-user")
         },
         setIsAuth(state) {
@@ -72,6 +77,7 @@ const userSlice = createSlice({
                 state.loading = false
                 state.isAuth = true
             })
+            // errors
             .addMatcher(isError, (state, action: PayloadAction<string>) => {
                 state.error = action.payload
                 state.loading = false
