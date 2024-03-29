@@ -5,7 +5,7 @@ import Footer from './Footer'
 import { useAppSelector } from '../../hooks'
 
 const Layout: React.FC = () => {
-    const {token, loading} = useAppSelector(store => store.user)
+    const {token, loading, isAuth} = useAppSelector(store => store.auth)
 
     if (loading) {
         return (
@@ -13,7 +13,7 @@ const Layout: React.FC = () => {
         )
     }
 
-    if (token === undefined || !token) {
+    if (token === undefined || !token && isAuth) {
         return (
             <Navigate to={"/auth"} replace />
         )

@@ -2,14 +2,14 @@ import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { IAuth } from '../../types'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { loginUser, registerUser } from '../../store/slices/userSlice'
-import { Navigate, useNavigate } from 'react-router-dom'
+import {Navigate, NavigateFunction, useNavigate} from 'react-router-dom'
+import {loginUser, registerUser} from "../../store/slices/authSlice.ts";
 
 const Auth: React.FC = () => {
 
-  const {isAuth, loading} = useAppSelector(store => store.user)
+  const {isAuth, loading} = useAppSelector(store => store.auth)
 
-  const navigate = useNavigate()
+  const navigate: NavigateFunction = useNavigate()
 
   if (loading) {
     return (
@@ -27,7 +27,7 @@ const Auth: React.FC = () => {
     }
   } = useForm<IAuth>()
 
-  const onSubmit: SubmitHandler<IAuth> = data => {
+  const onSubmit: SubmitHandler<IAuth> = (data: any): void => {
     if (status.includes("Up")) {
       dispatch(registerUser(data))
     } else {
@@ -66,7 +66,7 @@ const Auth: React.FC = () => {
             value: true
           },
           minLength: {
-            message: "MIn length of password is 5!",
+            message: "Min length of password is 5!",
             value: 5,
           },
         }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAppDispatch } from '../../hooks'
-import { logout } from '../../store/slices/userSlice'
 import { useNavigate } from 'react-router-dom'
+import {logout} from "../../store/slices/authSlice.ts";
 
 const Header: React.FC = () => {
 
