@@ -21,17 +21,21 @@ export const loginUser = createAsyncThunk<string, IUser>(
         try {
             const response = await instance.post("/login", user)
             return response.data
-        } catch (err: any) {
-            return rejectWithValue(err.response.data.message)
+        } catch (err) {
+            return rejectWithValue(err)
         }
     }
 )
 
 export const registerUser = createAsyncThunk<string, IUser>(
     'auth/registerUser',
-    async (user: IUser): Promise<string> => {
-        const response = await instance.post("/register", user)
-        return response.data
+    async (user: IUser, {rejectWithValue}): Promise<any> => {
+        try {
+            const response = await instance.post("/register", user)
+            return response.data
+        } catch (err) {
+            return rejectWithValue(err)
+        }
     }
 )
 
@@ -86,7 +90,7 @@ const authSlice = createSlice({
             })
             .addMatcher(isError, (state, action: any): void => {
                 console.log(action.payload)
-                state.error = action.payload
+                state.error = action.payload.response.data.message
                 state.loading = false
                 state.isAuth = false
             })
