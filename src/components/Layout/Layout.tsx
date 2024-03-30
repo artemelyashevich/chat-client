@@ -1,11 +1,11 @@
 import React from 'react'
 import Header from './Header'
-import { Navigate, Outlet } from 'react-router-dom'
+import {Navigate, Outlet} from 'react-router-dom'
 import Footer from './Footer'
-import { useAppSelector } from '../../hooks'
+import {useAppSelector} from '../../hooks'
 
 const Layout: React.FC = () => {
-    const {token, loading, isAuth} = useAppSelector(store => store.auth)
+    const {loading, isAuth} = useAppSelector(store => store.auth)
 
     if (loading) {
         return (
@@ -13,17 +13,19 @@ const Layout: React.FC = () => {
         )
     }
 
-    if (token === undefined || !token && isAuth) {
+    console.log(isAuth)
+
+    if (!isAuth) {
         return (
-            <Navigate to={"/auth"} replace />
+            <Navigate to={"/auth"} replace/>
         )
     }
 
     return (
         <div>
-            <Header />
-            <Outlet />
-            <Footer />
+            <Header/>
+            <Outlet/>
+            <Footer/>
         </div>
     )
 }

@@ -17,9 +17,13 @@ export const fetchMe = createAsyncThunk<IUser, string>(
 
 export const loginUser = createAsyncThunk<string, IUser>(
     'auth/loginUser',
-    async (user: IUser): Promise<string> => {
-        const response = await instance.post("/login", user)
-        return response.data
+    async (user: IUser, {rejectWithValue}): Promise<any> => {
+        try {
+            const response = await instance.post("/login", user)
+            return response.data
+        } catch (err: any) {
+            return rejectWithValue(err.response.data.message)
+        }
     }
 )
 
@@ -36,6 +40,10 @@ type authState = {
     loading: boolean,
     error: string | null,
     isAuth: boolean
+}
+
+const isError = (action: any) => {
+    return action.type.endsWith('rejected')
 }
 
 const initialState: authState = {
@@ -66,11 +74,6 @@ const authSlice = createSlice({
                 state.isAuth = true
             })
             // TODO: implements types
-            .addCase(loginUser.rejected, (state, action: any): void => {
-                state.loading = false
-                state.isAuth = false
-                state.error = action.payload
-            })
             .addCase(registerUser.pending, state => {
                 state.loading = true
                 state.error = null
@@ -81,10 +84,11 @@ const authSlice = createSlice({
                 state.token = action.payload
                 state.isAuth = true
             })
-            .addCase(registerUser.rejected, (state, action: any): void => {
+            .addMatcher(isError, (state, action: any): void => {
+                console.log(action.payload)
+                state.error = action.payload
                 state.loading = false
                 state.isAuth = false
-                state.error = action.payload
             })
     }
 })
