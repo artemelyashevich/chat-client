@@ -1,7 +1,10 @@
 export interface IUser {
-    _id?: string,
     name: string,
-    email: string
+    email: string,
+    image: string,
+    isAdmin: false,
+    createdAt: string,
+    updatedAt: string,
 }
 
 export interface IAuth {

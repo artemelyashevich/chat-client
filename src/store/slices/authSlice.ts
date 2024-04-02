@@ -1,19 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {instance} from "../../axios.ts";
 import {IUser} from "../../types.ts";
-import {AxiosResponse} from "axios";
 
-export const fetchMe = createAsyncThunk<IUser, string>(
-    'auth/fetchMe',
-    async (token: string): Promise<IUser> => {
-        const response: AxiosResponse<IUser> = await instance.get("/user", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        return response.data
-    }
-)
 
 export const loginUser = createAsyncThunk<string, IUser>(
     'auth/loginUser',
@@ -71,10 +59,9 @@ const authSlice = createSlice({
                 state.loading = true
                 state.error = null
             })
-            .addCase(loginUser.fulfilled, (state, action: PayloadAction<string>): void => {
-                console.log(action.payload)
+            .addCase(loginUser.fulfilled, (state, action: PayloadAction<any>): void => {
                 state.loading = false
-                state.token = action.payload
+                state.token = action.payload.accessToken
                 state.isAuth = true
             })
             // TODO: implements types
@@ -89,7 +76,6 @@ const authSlice = createSlice({
                 state.isAuth = true
             })
             .addMatcher(isError, (state, action: any): void => {
-                console.log(action.payload)
                 state.error = action.payload.response.data.message
                 state.loading = false
                 state.isAuth = false
@@ -98,4 +84,4 @@ const authSlice = createSlice({
 })
 
 export default authSlice.reducer
-export const logout = authSlice.actions.logout
+export const {logout} = authSlice.actions

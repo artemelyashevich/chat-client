@@ -59,24 +59,6 @@ const Auth: React.FC = () => {
                     className='auth-form__input'
                 />
             }
-            <input {...register("password",
-                {
-                    required: {
-                        message: "Password can not be empty",
-                        value: true
-                    },
-                    minLength: {
-                        message: "Min length of password is 5!",
-                        value: 5,
-                    },
-                }
-            )
-                   }
-                   type='password'
-                   placeholder='Password'
-                   className='auth-form__input'
-            />
-
             <input {...register("email",
                 {
                     required: {
@@ -98,7 +80,23 @@ const Auth: React.FC = () => {
                    placeholder='Email'
                    className='auth-form__input'
             />
-
+            <input {...register("password",
+                {
+                    required: {
+                        message: "Password can not be empty",
+                        value: true
+                    },
+                    minLength: {
+                        message: "Min length of password is 5!",
+                        value: 5,
+                    },
+                }
+            )
+                   }
+                   type='password'
+                   placeholder='Password'
+                   className='auth-form__input'
+            />
             <p className='errors'>
                 {errors.email?.message?.toString() || errors.password?.message?.toString() || errors.name?.message?.toString()}
                 {
