@@ -1,4 +1,19 @@
 .header {
+  display: flex;
+  background: $layoutBG;
+  justify-content: space-between;
+  border-radius: $mainBorderRadius;
+  margin: $mainMargin;
+  padding: $mainPadding;
+
+  a,
+  h1,
+  button {
+    color: $colorWhite;
+  }
+
+  &__right {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+  }
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import {useForm, SubmitHandler} from 'react-hook-form'
-import {IAuth} from '../../types'
-import {useAppDispatch, useAppSelector} from '../../hooks'
+import {IAuth} from '../types.ts'
+import {useAppDispatch, useAppSelector} from '../hooks.ts'
 import {Navigate, NavigateFunction, useNavigate} from 'react-router-dom'
-import {loginUser, registerUser} from "../../store/slices/authSlice.ts";
+import {loginUser, registerUser} from "../store/slices/authSlice.ts";
 
 const Auth: React.FC = () => {
 

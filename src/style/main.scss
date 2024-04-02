@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@600&family=Montserrat:wght@400;600;700&display=swap');
+@import "./vars";
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
 }
 
 h1,
@@ -19,5 +29,21 @@ label {
   font-family: 'Montserrat', sans-serif;
 }
 
+.container {
+  display: flex;
+  margin: $mainMargin;
+  gap: $mainMargin;
+}
+
+main {
+  background: $mainBG;
+  padding: $mainPadding;
+  border-radius: $mainBorderRadius;
+  width: 100%;
+}
+
+@import "./elements";
 @import "./auth";
 @import "./header";
+@import "./leftBar";
+@import "./footer";

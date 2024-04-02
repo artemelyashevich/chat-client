@@ -3,6 +3,7 @@ import Header from './Header'
 import {Navigate, Outlet} from 'react-router-dom'
 import Footer from './Footer'
 import {useAppSelector} from '../../hooks'
+import LeftBar from "./LeftBar.tsx"
 
 const Layout: React.FC = () => {
     const {loading, isAuth} = useAppSelector(store => store.auth)
@@ -13,8 +14,6 @@ const Layout: React.FC = () => {
         )
     }
 
-    console.log(isAuth)
-
     if (!isAuth) {
         return (
             <Navigate to={"/auth"} replace/>
@@ -24,7 +23,12 @@ const Layout: React.FC = () => {
     return (
         <div>
             <Header/>
-            <Outlet/>
+            <div className="container">
+                <LeftBar/>
+                <main>
+                    <Outlet/>
+                </main>
+            </div>
             <Footer/>
         </div>
     )
