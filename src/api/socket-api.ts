@@ -1,12 +1,12 @@
-import io, {Socket} from "socket.io-client";
+import io, {Socket} from "socket.io-client"
 
 export class SocketApi {
     static socket: null | Socket = null
 
-    static createConnection(): void {
+    static createConnection = (): void => {
         SocketApi.socket = io("http://localhost:8080/")
 
-        SocketApi.socket.on("connect", () => {
+        SocketApi.socket.on("connect", (): void => {
             console.log("Connected")
         })
 
@@ -16,8 +16,8 @@ export class SocketApi {
         })
     }
 
-    public static sendMessage(message: string) {
+    public static sendMessage = (message: string): void => {
         // @ts-ignore
         SocketApi.socket.emit("send_message", {text: message})
     }
- }
+}

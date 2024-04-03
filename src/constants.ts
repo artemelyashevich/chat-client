@@ -3,7 +3,7 @@ import {ILeftBarNavs} from "./types.ts";
 export const leftBarNavs: ILeftBarNavs[] = [
     {
         title: "Create new chat",
-        path: "/newChat"
+        path: "/chat/new"
     },
     {
         title: "Friends",
@@ -11,7 +11,7 @@ export const leftBarNavs: ILeftBarNavs[] = [
     },
     {
         title: "All Chats",
-        path: "/chats"
+        path: "/chat"
     },
     {
         title: "Search people",

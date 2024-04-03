@@ -2,13 +2,17 @@ import { configureStore } from "@reduxjs/toolkit";
 import { rememberEnhancer, rememberReducer } from "redux-remember";
 import authSlice from "./slices/authSlice.ts";
 import userSlice from "./slices/userSlice.ts";
+import messageSlice from "./slices/messageSlice.ts";
+import roomSlice from "./slices/roomSlice.ts";
 
 const rememberedKeys: string[] = ['auth']
 
 const store = configureStore({
     reducer: rememberReducer({
         auth: authSlice,
-        user: userSlice
+        user: userSlice,
+        message: messageSlice,
+        room: roomSlice
     }),
     enhancers: getDefaultEnhancers => getDefaultEnhancers().concat(
         rememberEnhancer(

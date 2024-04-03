@@ -1,4 +1,5 @@
 export interface IUser {
+    _id?: string,
     name: string,
     email: string,
     image: string,
@@ -16,4 +17,24 @@ export interface IAuth {
 export interface ILeftBarNavs {
     title: string,
     path: string
+}
+
+export interface IMessage {
+    _id?: string,
+    sender: string,
+    content: string,
+    roomId: string,
+    readBy: string,
+    createdAt: string,
+    updatedAt: string
+}
+
+export interface IRoom {
+    _id?: string,
+    roomName: string,
+    isGroupRoom: boolean,
+    users: string[],
+    latestMessage: string,
+    createdAt: string,
+    updatedAt: string
 }
