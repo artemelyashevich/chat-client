@@ -13,7 +13,7 @@ export const useChat = () => {
     const {room} = useAppSelector(store => store.room)
     const {user} = useAppSelector(store => store.user)
     const [users, setUsers] = React.useState<IUser[]>([])
-    const [log, setLog] = React.useState(null)
+    const [log, setLog] = React.useState<string | null>(null)
     const [messages, setMessages] = React.useState<IMessage[]>([])
     const {current: socket} = React.useRef(
         io("http://localhost:8080", {
@@ -42,7 +42,6 @@ export const useChat = () => {
         socket.emit('message:add', message)
     }
 
-    // метод для удаления сообщения
     const removeMessage = (message: IMessage): void => {
         socket.emit('message:remove', message)
     }

@@ -31,10 +31,6 @@ export interface IMessage {
 
 export interface IRoom {
     _id?: string,
-    roomName: string,
-    isGroupRoom: boolean,
-    users: string[],
-    latestMessage: string,
     createdAt: string,
     updatedAt: string
 }

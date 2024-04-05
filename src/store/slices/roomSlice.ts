@@ -1,19 +1,26 @@
-import {IRoom} from "../../types.ts";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {instance} from "../../axios.ts";
 
-export const fetchRooms = createAsyncThunk<IRoom, string>(
-    "room/fetchRooms",
-    async (token: string, {rejectWithValue}): Promise<any> => {
+const createRoom = createAsyncThunk<string, string>(
+    'room/fetchRoomId',
+    async (title: string, {rejectWithValue}): Promise<string> => {
         try {
-            const response = await instance.get("/rooms", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            const response = await instance.post('/room', title)
             return response.data
         } catch (err) {
-            return rejectWithValue(err)
+            throw rejectWithValue(err)
+        }
+    }
+)
+
+const getRoomIdByTitle = createAsyncThunk<string, string>(
+    'room/getRoomIdByTitle',
+    async (title: string, {rejectWithValue}): Promise<string> => {
+        try {
+            const response = await instance.get(`/room/${title}`)
+            return response.data
+        } catch (err) {
+            throw rejectWithValue(err)
         }
     }
 )
@@ -21,20 +28,13 @@ export const fetchRooms = createAsyncThunk<IRoom, string>(
 type roomState = {
     loading: boolean,
     error: null | string,
-    room: IRoom
+    roomId: string
 }
 
 const initialState: roomState = {
     loading: false,
     error: null,
-    room: {
-        roomName: "",
-        isGroupRoom: false,
-        users: [],
-        latestMessage: "",
-        createdAt: "",
-        updatedAt: ""
-    }
+    roomId: ""
 }
 
 const isError = (action: any) => {
@@ -47,13 +47,21 @@ const roomSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(fetchRooms.pending, state => {
-                state.loading = true
+            .addCase(createRoom.pending, state => {
                 state.error = null
+                state.loading = true
             })
-            .addCase(fetchRooms.fulfilled, (state, action): void => {
+            .addCase(createRoom.fulfilled, (state, action: PayloadAction<string>): void => {
+                state.roomId = action.payload
                 state.loading = false
-                state.room = action.payload
+            })
+            .addCase(getRoomIdByTitle.pending, state => {
+                state.error = null
+                state.loading = true
+            })
+            .addCase(getRoomIdByTitle.fulfilled, (state, action: PayloadAction<string>): void => {
+                state.roomId = action.payload
+                state.loading = false
             })
             .addMatcher(isError, (state, action: any): void => {
                 state.error = action.payload.response.data.message
