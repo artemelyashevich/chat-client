@@ -1,37 +1,22 @@
 .leftBar {
-  background: $mainBG;
-  width: 30%;
-  padding: $mainPadding;
-  border-radius: $mainBorderRadius;
+  background: $layoutBG;
+  width: 7.5%;
 
   &-item {
-    display: block;
-    width: 100%;
-    background: $layoutBG;
+  //  background: $layoutBG;
     padding: 1rem;
-    border-radius: $mainBorderRadius;
-    margin-bottom: 10px;
+    border-bottom: 1px solid #eeee;
+    font-size: 30px;
+    color: #b4b4ff;
 
-    p {
-      color: $colorWhite;
-      font-size: 17px;
-    }
+    text-align: center;
 
     :last-child {
       margin-bottom: 0;
     }
 
     &-active {
-      display: block;
-      border-radius: $mainBorderRadius;
-      padding: 1rem;
-      margin-bottom: 10px;
-      border: 2px solid #000;
-
-      p {
-        color: #000000;
-        font-size: 17px;
-      }
+     color: #fff;
     }
   }
 }

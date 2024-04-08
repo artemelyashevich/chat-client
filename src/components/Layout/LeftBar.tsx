@@ -1,5 +1,5 @@
 import React from "react"
-import {leftBarNavs} from "../../constants.ts"
+import {leftBarNavs} from "../../constants.tsx"
 import {NavLink} from "react-router-dom"
 
 const LeftBar: React.FC = () => {
@@ -7,17 +7,17 @@ const LeftBar: React.FC = () => {
         <section className="leftBar">
             <ul>
                 {
-                    leftBarNavs.map(x => (
-                        <li key={x.title}>
+                    leftBarNavs.map(((x, index) => (
+                        <li className="leftBar-item" key={index}>
                             <NavLink to={x.path} className={({ isActive }) =>
                                 isActive
-                                    ? "leftBar-item-active"
+                                    ? "leftBar-item leftBar-item-active"
                                     : "leftBar-item"
                             }>
-                                <p>{x.title}</p>
+                                {x.element}
                             </NavLink>
                         </li>
-                    ))
+                    )))
                 }
             </ul>
         </section>

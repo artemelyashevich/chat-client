@@ -1,9 +1,11 @@
 import React from "react"
+import SearchPeople from "../components/SearchPeople.tsx";
 
 export const NewChat: React.FC = () => {
     return (
-        <div className="newChat">
-            Create New chat
+        <div className="new-chat">
+            <SearchPeople />
+            <button>Create Chat</button>
         </div>
     )
 }

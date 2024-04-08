@@ -24,11 +24,6 @@ const Header: React.FC = () => {
                 </div>
             </div>
             <div className="header__right">
-                <div className="header__right-profile">
-                    <NavLink to={"/profile"}>
-                        <h1>{user.name}</h1>
-                    </NavLink>
-                </div>
                 <button onClick={handleLogOut}>Log Out</button>
             </div>
         </header>

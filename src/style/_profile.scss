@@ -1,0 +1,11 @@
+.profile {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  &__left {
+    img {
+      max-width: 80%;
+    }
+  }
+}

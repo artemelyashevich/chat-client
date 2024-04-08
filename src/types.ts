@@ -1,3 +1,5 @@
+import {IconType} from "react-icons";
+
 export interface IUser {
     _id?: string,
     name: string,
@@ -15,7 +17,7 @@ export interface IAuth {
 }
 
 export interface ILeftBarNavs {
-    title: string,
+    element: IconType,
     path: string
 }
 

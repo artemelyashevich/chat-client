@@ -6,9 +6,6 @@ import NotFound from "./pages/NotFound.tsx";
 import {Profile} from "./pages/Profile.tsx";
 import {Chats} from "./pages/Chats.tsx";
 import NewChat from "./pages/NewChat.tsx";
-import Friends from "./pages/Friends.tsx";
-import SearchPeople from "./pages/SearchPeople.tsx";
-import SearchChats from "./pages/SearchChats.tsx";
 import Chat from "./pages/Chat.tsx";
 
 export const router = createBrowserRouter([
@@ -26,41 +23,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/chat",
-                children: [
-                    {
-                        path: "/",
-                        element: <Chats/>
-                    },
-                    {
-                        path: "/new",
-                        element: <NewChat/>
-                    },
-                    {
-                        path: "/:id",
-                        element: <Chat/>
-                    }
-                ]
+                element: <Chats/>,
             },
             {
-                path: "/friends",
-                element: <Friends/>
+                path: "/chat-new",
+                element: <NewChat/>
             },
             {
-                path: "/searchPeople",
-                element: <SearchPeople/>
-            },
-            {
-                path: "/searchChats",
-                element: <SearchChats/>
+                path: "/chat/:id",
+                element: <Chat/>
             }
         ]
     },
     {
         path: "/auth",
-        element: <Auth/>
-    },
+        element:
+            <Auth/>
+    }
+    ,
     {
         path: "*",
-        element: <NotFound/>
+        element:
+            <NotFound/>
     }
 ])

@@ -10,19 +10,27 @@ export const Profile: React.FC = () => {
         dispatch(fetchMe(token))
     }, [])
     return (
-        <div className="profile">
+        <>
             {
                 loading
                     ? <p>Loading...</p>
-                    : <div>
-                        <img src={user.image} alt="avatar"/>
-                        <h1>{user.name}</h1>
-                        <h1>{user.email}</h1>
+                    : <div className="profile">
+                        <div className="profile__left">
+                            <img src={user.image} alt="avatar"/>
+                        </div>
+                        <div className="profile__right">
+                            <h2>
+                                {user.name}
+                            </h2>
+                            <h2>
+                                {user.email}
+                            </h2>
+                        </div>
                     </div>
             }
             {
                 error && <p className="errors">{error}</p>
             }
-        </div>
+        </>
     )
 }

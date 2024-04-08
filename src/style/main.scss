@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+body {
+  background: $mainBG
+}
+
 a {
   text-decoration: none;
 }
@@ -31,14 +35,15 @@ label {
 
 .container {
   display: flex;
-  margin: $mainMargin;
-  gap: $mainMargin;
+  margin: $mainMargin auto;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+  width: 95%;
+  height: 75vh;
 }
 
 main {
-  background: $mainBG;
+  background: #fff;
   padding: $mainPadding;
-  border-radius: $mainBorderRadius;
   width: 100%;
 }
 
@@ -47,3 +52,6 @@ main {
 @import "./header";
 @import "./leftBar";
 @import "./footer";
+@import "./new-chat";
+@import "./profile";
+
