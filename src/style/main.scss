@@ -43,7 +43,6 @@ label {
 
 main {
   background: #fff;
-  padding: $mainPadding;
   width: 100%;
 }
 
@@ -55,4 +54,4 @@ main {
 @import "./new-chat";
 @import "./profile";
 @import "./chats";
-
+@import "./chat";

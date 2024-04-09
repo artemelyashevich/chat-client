@@ -5,13 +5,11 @@ import {searchPeople} from "../store/slices/peopleSlice.ts";
 import debounce from 'lodash.debounce'
 import {createRoom} from "../store/slices/roomSlice.ts";
 import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
 
 export const NewChat: React.FC = () => {
     const peopleList: IUser[] = []
     const {people, loading} = useAppSelector(store => store.people)
     const {user} = useAppSelector(store => store.user)
-    const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const handleChange = (e: any): void => {
         dispatch(searchPeople(e.target.value))
@@ -33,7 +31,9 @@ export const NewChat: React.FC = () => {
             creatorId: user._id
         }
         dispatch(createRoom(room))
-        navigate("/chats")
+     //   dispatch(getRooms())
+      //  const {rooms} = useAppSelector(store => store.room)
+      //  navigate(`/chats/${rooms[0]}`)
     }
 
     const {handleSubmit} = useForm()
