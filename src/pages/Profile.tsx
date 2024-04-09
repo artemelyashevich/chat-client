@@ -10,7 +10,7 @@ export const Profile: React.FC = () => {
         dispatch(fetchMe(token))
     }, [])
     return (
-        <>
+        <React.Fragment>
             {
                 loading
                     ? <p>Loading...</p>
@@ -31,6 +31,6 @@ export const Profile: React.FC = () => {
             {
                 error && <p className="errors">{error}</p>
             }
-        </>
+        </React.Fragment>
     )
 }

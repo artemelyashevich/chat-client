@@ -10,7 +10,7 @@ const Layout: React.FC = () => {
 
     if (loading) {
         return (
-            <div>Loading...</div>
+            <React.Fragment>Loading...</React.Fragment>
         )
     }
 
@@ -21,7 +21,7 @@ const Layout: React.FC = () => {
     }
 
     return (
-        <div>
+        <React.Fragment>
             <Header/>
             <div className="container">
                 <LeftBar/>
@@ -30,7 +30,7 @@ const Layout: React.FC = () => {
                 </main>
             </div>
             <Footer/>
-        </div>
+        </React.Fragment>
     )
 }
 

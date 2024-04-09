@@ -2,14 +2,15 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {IUser} from "../../types.ts"
 import {AxiosResponse} from "axios"
 import {instance} from "../../axios.ts"
+import {getToken} from "../../utils.ts";
 
-export const fetchMe = createAsyncThunk<IUser, string>(
+export const fetchMe = createAsyncThunk<IUser>(
     'auth/fetchMe',
-    async (token: string, {rejectWithValue}): Promise<any> => {
+    async (_, {rejectWithValue}): Promise<any> => {
         try {
             const response: AxiosResponse<IUser> = await instance.get("/user", {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${getToken()}`
                 }
             })
             return response.data
@@ -35,7 +36,6 @@ const initialState: userState = {
     user: {
         name: "",
         email: "",
-        isAdmin: false,
         image: "",
         updatedAt: "",
         createdAt: ""

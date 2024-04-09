@@ -1,5 +1,5 @@
 import React from 'react'
-import {useAppDispatch, useAppSelector} from '../../hooks'
+import {useAppDispatch} from '../../hooks'
 import {NavLink, useNavigate} from 'react-router-dom'
 import {logout} from "../../store/slices/authSlice.ts";
 
@@ -7,7 +7,6 @@ const Header: React.FC = () => {
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const {user} = useAppSelector(store => store.user)
 
     const handleLogOut = () => {
         dispatch(logout())

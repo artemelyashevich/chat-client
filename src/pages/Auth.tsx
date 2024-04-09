@@ -13,7 +13,7 @@ const Auth: React.FC = () => {
 
     if (loading) {
         return (
-            <div>Loading...</div>
+            <React.Fragment>Loading...</React.Fragment>
         )
     }
 
@@ -108,13 +108,13 @@ const Auth: React.FC = () => {
                 }
             </p>
             <button type='submit'>{status}</button>
-            <div>
+            <React.Fragment>
                 {
                     status.includes("Up")
                         ? <p className='label' onClick={() => setStatus("Sign In")}>Login here</p>
                         : <p className='label' onClick={() => setStatus("Sign Up")}>Register here</p>
                 }
-            </div>
+            </React.Fragment>
         </form>
     )
 }

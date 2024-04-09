@@ -1,11 +1,8 @@
-import {IconType} from "react-icons";
-
 export interface IUser {
     _id?: string,
     name: string,
     email: string,
     image: string,
-    isAdmin: false,
     createdAt: string,
     updatedAt: string,
 }
@@ -17,7 +14,7 @@ export interface IAuth {
 }
 
 export interface ILeftBarNavs {
-    element: IconType,
+    element: JSX.Element,
     path: string
 }
 
@@ -33,6 +30,9 @@ export interface IMessage {
 
 export interface IRoom {
     _id?: string,
-    createdAt: string,
-    updatedAt: string
+    title?: string,
+    usersId?: string[],
+    creatorId?: string,
+    createdAt?: string,
+    updatedAt?: string
 }

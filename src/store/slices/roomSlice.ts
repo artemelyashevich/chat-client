@@ -1,11 +1,19 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {instance} from "../../axios.ts";
+import {AxiosResponse} from "axios";
+import {IRoom} from "../../types.ts";
+import {getToken} from "../../utils.ts";
 
-const createRoom = createAsyncThunk<string, string>(
+export const createRoom = createAsyncThunk<string, IRoom>(
     'room/fetchRoomId',
-    async (title: string, {rejectWithValue}): Promise<string> => {
+    async (room: IRoom, {rejectWithValue}): Promise<string> => {
         try {
-            const response = await instance.post('/room', title)
+            // @ts-ignore
+            const response: AxiosResponse<string> = await instance.post('/room', room, {
+                headers: {
+                    Authorization: `Bearer ${getToken()}`
+                }
+            })
             return response.data
         } catch (err) {
             throw rejectWithValue(err)
@@ -13,11 +21,27 @@ const createRoom = createAsyncThunk<string, string>(
     }
 )
 
-const getRoomIdByTitle = createAsyncThunk<string, string>(
+export const getRoomIdByTitle = createAsyncThunk<string, string>(
     'room/getRoomIdByTitle',
     async (title: string, {rejectWithValue}): Promise<string> => {
         try {
-            const response = await instance.get(`/room/${title}`)
+            const response: AxiosResponse<string> = await instance.get(`/room/${title}`)
+            return response.data
+        } catch (err) {
+            throw rejectWithValue(err)
+        }
+    }
+)
+
+export const getRooms = createAsyncThunk<IRoom[]>(
+    'room/getRooms',
+    async (_, {rejectWithValue}): Promise<IRoom[]> => {
+        try {
+            const response = await instance.get('/room', {
+                headers: {
+                    Authorization: `Bearer ${getToken()}`
+                }
+            })
             return response.data
         } catch (err) {
             throw rejectWithValue(err)
@@ -28,13 +52,15 @@ const getRoomIdByTitle = createAsyncThunk<string, string>(
 type roomState = {
     loading: boolean,
     error: null | string,
-    roomId: string
+    roomId: string,
+    rooms: IRoom[]
 }
 
 const initialState: roomState = {
     loading: false,
     error: null,
-    roomId: ""
+    roomId: "",
+    rooms: []
 }
 
 const isError = (action: any) => {
@@ -61,6 +87,14 @@ const roomSlice = createSlice({
             })
             .addCase(getRoomIdByTitle.fulfilled, (state, action: PayloadAction<string>): void => {
                 state.roomId = action.payload
+                state.loading = false
+            })
+            .addCase(getRooms.pending, state => {
+                state.error = null
+                state.loading = true
+            })
+            .addCase(getRooms.fulfilled, (state, action: PayloadAction<IRoom[]>): void => {
+                state.rooms = action.payload
                 state.loading = false
             })
             .addMatcher(isError, (state, action: any): void => {

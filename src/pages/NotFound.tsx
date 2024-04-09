@@ -2,7 +2,7 @@ import React from 'react'
 
 const NotFound: React.FC = () => {
   return (
-    <div>NotFound</div>
+    <React.Fragment>NotFound</React.Fragment>
   )
 }
 

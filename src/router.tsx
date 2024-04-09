@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
                 element: <Profile/>
             },
             {
-                path: "/chat",
+                path: "/chats",
                 element: <Chats/>,
             },
             {

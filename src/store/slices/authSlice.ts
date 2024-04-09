@@ -1,13 +1,14 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {instance} from "../../axios.ts";
 import {IUser} from "../../types.ts";
+import {AxiosResponse} from "axios";
 
 
 export const loginUser = createAsyncThunk<string, IUser>(
     'auth/loginUser',
     async (user: IUser, {rejectWithValue}): Promise<any> => {
         try {
-            const response = await instance.post("/login", user)
+            const response: AxiosResponse<IUser> = await instance.post("/login", user)
             return response.data
         } catch (err) {
             return rejectWithValue(err)
@@ -19,7 +20,7 @@ export const registerUser = createAsyncThunk<string, IUser>(
     'auth/registerUser',
     async (user: IUser, {rejectWithValue}): Promise<any> => {
         try {
-            const response = await instance.post("/register", user)
+            const response: AxiosResponse<IUser> = await instance.post("/register", user)
             return response.data
         } catch (err) {
             return rejectWithValue(err)
@@ -69,10 +70,9 @@ const authSlice = createSlice({
                 state.loading = true
                 state.error = null
             })
-            .addCase(registerUser.fulfilled, (state, action): void => {
-                console.log(action.payload)
+            .addCase(registerUser.fulfilled, (state, action: PayloadAction<any>): void => {
                 state.loading = false
-                state.token = action.payload
+                state.token = action.payload.accessToken
                 state.isAuth = true
             })
             .addMatcher(isError, (state, action: any): void => {
