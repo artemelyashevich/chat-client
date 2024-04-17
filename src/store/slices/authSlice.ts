@@ -8,6 +8,7 @@ export const loginUser = createAsyncThunk<string, IUser>(
     'auth/loginUser',
     async (user: IUser, {rejectWithValue}): Promise<any> => {
         try {
+            console.log(user)
             const response: AxiosResponse<IUser> = await instance.post("/login", user)
             return response.data
         } catch (err) {
@@ -76,7 +77,7 @@ const authSlice = createSlice({
                 state.isAuth = true
             })
             .addMatcher(isError, (state, action: any): void => {
-                state.error = action.payload.response.data.message
+                state.error = action.payload.response?.data?.message || "Something went wrong..."
                 state.loading = false
                 state.isAuth = false
             })

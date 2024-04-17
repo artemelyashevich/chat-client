@@ -27,13 +27,15 @@ export const NewChat: React.FC = () => {
         const room: IRoom = {
             title: peopleList[0].name,
             // @ts-ignore
-            usersId: peopleList.map(user => user._id),
+            usersId: [user, ...peopleList].map(user => {
+                return {"userId": user._id}
+            }),
             creatorId: user._id
         }
         dispatch(createRoom(room))
-     //   dispatch(getRooms())
-      //  const {rooms} = useAppSelector(store => store.room)
-      //  navigate(`/chats/${rooms[0]}`)
+        //   dispatch(getRooms())
+        //  const {rooms} = useAppSelector(store => store.room)
+        //  navigate(`/chats/${rooms[0]}`)
     }
 
     const {handleSubmit} = useForm()

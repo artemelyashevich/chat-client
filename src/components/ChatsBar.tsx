@@ -16,8 +16,12 @@ const ChatsBar: React.FC = () => {
                 {loading
                     ? <React.Fragment>Loading...</React.Fragment>
                     : rooms.map((room: IRoom, index: number) => (
-                        <NavLink to={`/chat/${room._id}`}>
-                            <li key={index}>
+                        <NavLink className={({ isActive }) =>
+                            isActive
+                                ? "chatsBar-item chatsBar-item-active"
+                                : "chatsBar-item"
+                        } key={index} to={`/chat/${room._id}`}>
+                            <li>
                                 {room.title}
                             </li>
                         </NavLink>

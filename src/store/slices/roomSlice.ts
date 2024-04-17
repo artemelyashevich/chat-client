@@ -21,11 +21,15 @@ export const createRoom = createAsyncThunk<string, IRoom>(
     }
 )
 
-export const getRoomIdByTitle = createAsyncThunk<string, string>(
-    'room/getRoomIdByTitle',
-    async (title: string, {rejectWithValue}): Promise<string> => {
+export const getRoomById = createAsyncThunk<IRoom, string>(
+    'room/getRoomById',
+    async (id: string, {rejectWithValue}): Promise<any> => {
         try {
-            const response: AxiosResponse<string> = await instance.get(`/room/${title}`)
+            const response: AxiosResponse<string> = await instance.get(`/rooms/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${getToken()}`
+                }
+            })
             return response.data
         } catch (err) {
             throw rejectWithValue(err)
@@ -53,14 +57,16 @@ type roomState = {
     loading: boolean,
     error: null | string,
     roomId: string,
-    rooms: IRoom[]
+    rooms: IRoom[],
+    room: IRoom
 }
 
 const initialState: roomState = {
     loading: false,
     error: null,
     roomId: "",
-    rooms: []
+    rooms: [],
+    room: {}
 }
 
 const isError = (action: any) => {
@@ -81,12 +87,13 @@ const roomSlice = createSlice({
                 state.roomId = action.payload
                 state.loading = false
             })
-            .addCase(getRoomIdByTitle.pending, state => {
+            .addCase(getRoomById.pending, state => {
                 state.error = null
                 state.loading = true
             })
-            .addCase(getRoomIdByTitle.fulfilled, (state, action: PayloadAction<string>): void => {
-                state.roomId = action.payload
+            .addCase(getRoomById.fulfilled, (state, action: PayloadAction<IRoom>): void => {
+                console.log( action.payload)
+                state.room = action.payload
                 state.loading = false
             })
             .addCase(getRooms.pending, state => {

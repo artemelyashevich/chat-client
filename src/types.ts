@@ -23,15 +23,15 @@ export interface IMessage {
     sender: string,
     content: string,
     roomId: string,
-    readBy: string,
-    createdAt: string,
-    updatedAt: string
+    readBy?: string,
+    createdAt?: string,
+    updatedAt?: string
 }
 
 export interface IRoom {
     _id?: string,
     title?: string,
-    usersId?: string[],
+    usersId?: [{userId: string}],
     creatorId?: string,
     createdAt?: string,
     updatedAt?: string

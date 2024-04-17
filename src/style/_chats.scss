@@ -15,4 +15,14 @@
     background: $mainBG;
     cursor: pointer;
   }
+
+  &Bar-item {
+    &-active {
+      li {
+        background: #709bff;
+      }
+    }
+  }
+
+
 }
