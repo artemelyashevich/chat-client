@@ -3,11 +3,10 @@ import {useAppDispatch, useAppSelector} from "../hooks.ts";
 import {fetchMe} from "../store/slices/userSlice.ts";
 
 export const Profile: React.FC = () => {
-    const {token} = useAppSelector(store => store.auth)
     const {user, loading, error} = useAppSelector(store => store.user)
     const dispatch = useAppDispatch()
     React.useEffect(() => {
-        dispatch(fetchMe(token))
+        dispatch(fetchMe())
     }, [])
     return (
         <React.Fragment>

@@ -1,6 +1,7 @@
 .chat {
   display: flex;
   height: 100%;
+  overflow:scroll;
 
   &-content {
     display: flex;
@@ -33,16 +34,31 @@
         border-radius: 5px;
         margin-bottom: 5px;
         max-width: 45%;
+        padding-right: 4rem;
       }
     }
 
 
     &-right {
       background: #709bff;
+      position: relative;
+
+      span {
+        position: absolute;
+        font-size: 10px;
+        padding: 10px;
+      }
     }
 
     &-left {
       background: #d0dfff;
+      position: relative;
+
+      span {
+        position: absolute;
+        font-size: 10px;
+        padding: 10px;
+      }
     }
 
   }

@@ -6,7 +6,7 @@ import NotFound from "./pages/NotFound.tsx";
 import {Profile} from "./pages/Profile.tsx";
 import {Chats} from "./pages/Chats.tsx";
 import NewChat from "./pages/NewChat.tsx";
-import Chat from "./components/Chat.tsx";
+import Chat from "./pages/Chat.tsx";
 
 export const router = createBrowserRouter([
     {

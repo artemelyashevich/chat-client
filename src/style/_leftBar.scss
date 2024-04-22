@@ -1,11 +1,13 @@
 .leftBar {
-  background: $layoutBG;
-  width: 7.5%;
+  background: #fff;
+  width: 6rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-right: 1px solid #000;
 
   &-item {
-  //  background: $layoutBG;
     padding: 1rem;
-    border-bottom: 1px solid #eeee;
     font-size: 30px;
     color: #b4b4ff;
 
@@ -15,8 +17,21 @@
       margin-bottom: 0;
     }
 
-    &-active {
-     color: #fff;
+    &-active,
+    &:hover {
+     color: #7a7a7a;
+    }
+  }
+
+  &-logout {
+    font-size: 30px;
+    padding: 1rem;
+    text-align: center;
+    color: #b4b4ff;
+    cursor: pointer;
+
+    &:hover {
+      color: #7a7a7a;
     }
   }
 }

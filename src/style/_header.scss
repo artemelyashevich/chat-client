@@ -1,21 +1,19 @@
 .header {
   display: flex;
-  background: $layoutBG;
+  background: #fff;
   justify-content: space-between;
-  margin: $mainMargin auto;
+  margin: 0 auto;
+  margin-top: 10px;
   padding: $mainPadding;
   width: 95%;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19);
   height: 10vh;
+  border-bottom: 1px solid #000;
 
-  a,
-  h1,
   button {
     color: $colorWhite;
   }
 
-  &__right {
-    display: flex;
-    gap: 10px;
+  a {
+    color: #000;
   }
 }

@@ -40,7 +40,9 @@ export const useChat = () => {
     }, [])
 
     const sendMessage = (message: IMessage): void => {
-        socket.emit('message:add', message)
+        if (message.content.length > 0) {
+            socket.emit('message:add', message)
+        }
     }
 
     const removeMessage = (message: IMessage): void => {

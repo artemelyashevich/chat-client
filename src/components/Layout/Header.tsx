@@ -1,17 +1,7 @@
 import React from 'react'
-import {useAppDispatch} from '../../hooks'
-import {NavLink, useNavigate} from 'react-router-dom'
-import {logout} from "../../store/slices/authSlice.ts";
+import {NavLink} from 'react-router-dom'
 
 const Header: React.FC = () => {
-
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate()
-
-    const handleLogOut = () => {
-        dispatch(logout())
-        navigate("/auth")
-    }
 
     return (
         <header className='header'>
@@ -21,9 +11,6 @@ const Header: React.FC = () => {
                         <h1>Logo</h1>
                     </NavLink>
                 </div>
-            </div>
-            <div className="header__right">
-                <button onClick={handleLogOut}>Log Out</button>
             </div>
         </header>
     )

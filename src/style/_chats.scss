@@ -12,14 +12,19 @@
   li {
     border: 1px solid #eeee;
     padding: 1rem 10px;
-    background: $mainBG;
+    background: #fff;
     cursor: pointer;
   }
 
   &Bar-item {
+    li {
+      font-size: 20px;
+      height: 4rem;
+    }
+
     &-active {
       li {
-        background: #709bff;
+        background: #fafafa;
       }
     }
   }

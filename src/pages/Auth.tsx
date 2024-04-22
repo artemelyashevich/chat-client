@@ -33,7 +33,7 @@ const Auth: React.FC = () => {
         } else {
             dispatch(loginUser(data))
         }
-        navigate("/")
+        navigate("/profile")
         reset()
     }
 
