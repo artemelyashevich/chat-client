@@ -1,13 +1,13 @@
 import React from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { IAuth } from '../types.ts'
-import { useAppDispatch, useAppSelector } from '../hooks.ts'
-import { Navigate, NavigateFunction, useNavigate } from 'react-router-dom'
-import { loginUser, registerUser } from "../store/slices/authSlice.ts";
+import {useForm, SubmitHandler} from 'react-hook-form'
+import {IAuth} from '../types.ts'
+import {useAppDispatch, useAppSelector} from '../hooks.ts'
+import {Navigate, NavigateFunction, useNavigate} from 'react-router-dom'
+import {loginUser, registerUser} from "../store/slices/authSlice.ts";
 
 const Auth: React.FC = () => {
 
-    const { isAuth, loading, error } = useAppSelector(store => store.auth)
+    const {isAuth, loading, error} = useAppSelector(store => store.auth)
 
     const navigate: NavigateFunction = useNavigate()
 
@@ -33,27 +33,27 @@ const Auth: React.FC = () => {
         } else {
             dispatch(loginUser(data))
         }
-        navigate("/profile")
+        !loading && navigate("/")
         reset()
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} noValidate className='auth-form'>
             {
-                isAuth && <Navigate to={"/"} replace />
+                (!loading && isAuth) && <Navigate to={"/"} replace/>
             }
             <h1>{status}</h1>
             {
                 status.includes("Up") && <input
                     {
-                    ...register("name",
-                        {
-                            required: {
-                                message: "Username can not be empty!",
-                                value: true
+                        ...register("name",
+                            {
+                                required: {
+                                    message: "Username can not be empty!",
+                                    value: true
+                                }
                             }
-                        }
-                    )
+                        )
                     }
                     type='text'
                     placeholder='Username'
@@ -76,10 +76,10 @@ const Auth: React.FC = () => {
                     },
                 }
             )
-            }
-                type='email'
-                placeholder='Email'
-                className='auth-form__input'
+                   }
+                   type='email'
+                   placeholder='Email'
+                   className='auth-form__input'
             />
             <input {...register("password",
                 {
@@ -93,10 +93,10 @@ const Auth: React.FC = () => {
                     },
                 }
             )
-            }
-                type='password'
-                placeholder='Password'
-                className='auth-form__input'
+                   }
+                   type='password'
+                   placeholder='Password'
+                   className='auth-form__input'
             />
             <p className='errors'>
                 {

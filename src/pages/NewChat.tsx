@@ -7,6 +7,8 @@ import {createRoom, getRooms} from "../store/slices/roomSlice.ts";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 
+// TODO: придумать красивую форму
+
 export const NewChat: React.FC = () => {
     const peopleList: IUser[] = []
     const {people, loading} = useAppSelector(store => store.people)

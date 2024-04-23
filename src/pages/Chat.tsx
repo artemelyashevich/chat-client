@@ -6,6 +6,8 @@ import {useForm} from "react-hook-form";
 import {IMessage} from "../types.ts";
 import Message from "../components/Message.tsx";
 
+// TODO: добавить кол-во участников в чате и онлайн, добавить кто печатает
+
 const Chat: React.FC = () => {
     const params = useParams()
     // @ts-ignore
@@ -30,16 +32,18 @@ const Chat: React.FC = () => {
     return (
         <div className="chat">
             <ChatsBar/>
-            <div className="chat-content">
-                <ul>
-                    {
-                        messages.length !== 0 && messages.map(
-                            (message: IMessage, index: number) => (
-                                <Message message={message} user={user} key={index}/>
+            <div className='chat-right'>
+                <div className="chat-content">
+                    <ul>
+                        {
+                            messages.length !== 0 && messages.map(
+                                (message: IMessage, index: number) => (
+                                    <Message message={message} user={user} key={index}/>
+                                )
                             )
-                        )
-                    }
-                </ul>
+                        }
+                    </ul>
+                </div>
                 <form onSubmit={handleSubmit(submit)}>
                     <input {...register("message")} placeholder="Enter message"/>
                     <button type="submit">Send</button>

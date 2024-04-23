@@ -1,14 +1,10 @@
 import {ILeftBarNavs} from "./types.ts"
-import {BsChatSquareDots, BsHouseDoor, BsPen, BsPerson} from "react-icons/bs";
+import {BsChatSquareDots, BsPen, BsPerson} from "react-icons/bs";
 
 export const leftBarNavs: ILeftBarNavs[] = [
     {
-        element: <BsHouseDoor/>,
-        path: "/"
-    },
-    {
         element: <BsPerson/>,
-        path: "/profile"
+        path: "/"
     },
     {
         element: <BsPen/>,

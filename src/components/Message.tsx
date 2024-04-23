@@ -6,6 +6,8 @@ type TMessage = {
     user: IUser,
 }
 
+// TODO: пофиксить дату создания, попробовать добавить имя создателя сообщения
+
 const Message: React.FC<TMessage> = ({message, user}) => {
     const dateCreated = new Date(String(message.createdAt)).toLocaleDateString()
     return (

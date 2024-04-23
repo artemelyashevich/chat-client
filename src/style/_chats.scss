@@ -1,7 +1,10 @@
 .chats {
-  border-right: 2px solid rgba(173, 173, 173, 0.93);
+  width: 10rem;
   height: 100%;
-  width: 15%;
+
+  &-content {
+    display: flex;
+  }
 
   a {
     text-decoration: none;

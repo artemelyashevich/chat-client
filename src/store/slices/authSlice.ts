@@ -30,7 +30,7 @@ export const registerUser = createAsyncThunk<string, IUser>(
 )
 
 type authState = {
-    token: string,
+    token: string | null,
     loading: boolean,
     error: string | null,
     isAuth: boolean
@@ -53,6 +53,9 @@ const authSlice = createSlice({
     reducers: {
         logout(state): void {
             state.isAuth = false
+            state.token = null
+            window.localStorage.removeItem("@@remember-user")
+            window.localStorage.removeItem("@@remember-auth")
         }
     },
     extraReducers: builder => {

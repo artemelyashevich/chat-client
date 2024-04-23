@@ -4,6 +4,8 @@ import {NavLink} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../hooks.ts";
 import {getRooms} from "../store/slices/roomSlice.ts";
 
+// TODO: тобавить уведомления о новых сообщениях
+
 const ChatsBar: React.FC = () => {
     const dispatch = useAppDispatch()
     React.useEffect(() => {
