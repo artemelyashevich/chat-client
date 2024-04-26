@@ -1,12 +1,12 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {instance} from "../../axios.ts";
-import {IUser} from "../../types.ts";
-import {AxiosResponse} from "axios";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { instance } from "../../axios.ts";
+import { IUser } from "../../types.ts";
+import { AxiosResponse } from "axios";
 
 
 export const loginUser = createAsyncThunk<string, IUser>(
     'auth/loginUser',
-    async (user: IUser, {rejectWithValue}): Promise<any> => {
+    async (user: IUser, { rejectWithValue }): Promise<any> => {
         try {
             console.log(user)
             const response: AxiosResponse<IUser> = await instance.post("/login", user)
@@ -19,7 +19,7 @@ export const loginUser = createAsyncThunk<string, IUser>(
 
 export const registerUser = createAsyncThunk<string, IUser>(
     'auth/registerUser',
-    async (user: IUser, {rejectWithValue}): Promise<any> => {
+    async (user: IUser, { rejectWithValue }): Promise<any> => {
         try {
             const response: AxiosResponse<IUser> = await instance.post("/register", user)
             return response.data
@@ -88,4 +88,4 @@ const authSlice = createSlice({
 })
 
 export default authSlice.reducer
-export const {logout} = authSlice.actions
+export const { logout } = authSlice.actions

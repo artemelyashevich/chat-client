@@ -1,12 +1,12 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {IUser} from "../../types.ts"
-import {AxiosResponse} from "axios"
-import {instance} from "../../axios.ts"
-import {getToken} from "../../utils.ts";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { IUser } from "../../types.ts"
+import { AxiosResponse } from "axios"
+import { instance } from "../../axios.ts"
+import { getToken } from "../../utils.ts";
 
 export const fetchMe = createAsyncThunk<IUser, string>(
     'user/fetchMe',
-    async (token: string = getToken(), {rejectWithValue}): Promise<any> => {
+    async (token: string = getToken(), { rejectWithValue }): Promise<any> => {
         try {
             const response: AxiosResponse<IUser> = await instance.get("/user", {
                 headers: {
@@ -22,7 +22,7 @@ export const fetchMe = createAsyncThunk<IUser, string>(
 
 export const updateMe = createAsyncThunk<IUser, IUser>(
     'user/updateMe',
-    async (data: IUser, {rejectWithValue}): Promise<any> => {
+    async (data: IUser, { rejectWithValue }): Promise<any> => {
         try {
             const response = await instance.patch("/users", data, {
                 headers: {

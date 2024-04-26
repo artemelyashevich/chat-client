@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from './Header'
-import {Navigate, Outlet} from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import Footer from './Footer'
-import {useAppSelector} from '../../hooks'
+import { useAppSelector } from '../../hooks'
 import LeftBar from "./LeftBar.tsx"
 
 const Layout: React.FC = () => {
-    const {loading, isAuth} = useAppSelector(store => store.auth)
+    const { loading, isAuth } = useAppSelector(store => store.auth)
 
     if (loading) {
         return (
@@ -16,20 +16,20 @@ const Layout: React.FC = () => {
 
     if (!isAuth) {
         return (
-            <Navigate to={"/auth"} replace/>
+            <Navigate to={"/auth"} replace />
         )
     }
 
     return (
         <React.Fragment>
-            <Header/>
+            <Header />
             <div className="container">
-                <LeftBar/>
+                <LeftBar />
                 <main>
-                    <Outlet/>
+                    <Outlet />
                 </main>
             </div>
-            <Footer/>
+            <Footer />
         </React.Fragment>
     )
 }

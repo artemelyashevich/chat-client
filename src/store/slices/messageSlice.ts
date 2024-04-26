@@ -1,5 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {IMessage} from "../../types.ts";
+import { createSlice } from "@reduxjs/toolkit";
+import { IMessage } from "../../types.ts";
 
 type messageState = {
     loading: boolean,

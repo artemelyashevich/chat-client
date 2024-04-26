@@ -1,12 +1,12 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {instance} from "../../axios.ts";
-import {AxiosResponse} from "axios";
-import {IRoom} from "../../types.ts";
-import {getToken} from "../../utils.ts";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { instance } from "../../axios.ts";
+import { AxiosResponse } from "axios";
+import { IRoom } from "../../types.ts";
+import { getToken } from "../../utils.ts";
 
 export const createRoom = createAsyncThunk<string, IRoom>(
     'room/fetchRoomId',
-    async (room: IRoom, {rejectWithValue}): Promise<string> => {
+    async (room: IRoom, { rejectWithValue }): Promise<string> => {
         try {
             // @ts-ignore
             const response: AxiosResponse<string> = await instance.post('/room', room, {
@@ -23,7 +23,7 @@ export const createRoom = createAsyncThunk<string, IRoom>(
 
 export const getRoomById = createAsyncThunk<IRoom, string>(
     'room/getRoomById',
-    async (id: string, {rejectWithValue}): Promise<any> => {
+    async (id: string, { rejectWithValue }): Promise<any> => {
         try {
             const response: AxiosResponse<string> = await instance.get(`/rooms/${id}`, {
                 headers: {
@@ -39,7 +39,7 @@ export const getRoomById = createAsyncThunk<IRoom, string>(
 
 export const getRooms = createAsyncThunk<IRoom[]>(
     'room/getRooms',
-    async (_, {rejectWithValue}): Promise<IRoom[]> => {
+    async (_, { rejectWithValue }): Promise<IRoom[]> => {
         try {
             const response = await instance.get('/room', {
                 headers: {
@@ -92,7 +92,7 @@ const roomSlice = createSlice({
                 state.loading = true
             })
             .addCase(getRoomById.fulfilled, (state, action: PayloadAction<IRoom>): void => {
-                console.log( action.payload)
+                console.log(action.payload)
                 state.room = action.payload
                 state.loading = false
             })

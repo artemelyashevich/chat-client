@@ -31,7 +31,7 @@ export interface IMessage {
 export interface IRoom {
     _id?: string,
     title?: string,
-    usersId?: [{userId: string}],
+    usersId?: [{ userId: string }],
     creatorId?: string,
     createdAt?: string,
     updatedAt?: string

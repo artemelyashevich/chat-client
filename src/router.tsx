@@ -1,44 +1,44 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Auth from "./pages/Auth.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import {Profile} from "./pages/Profile.tsx";
-import {Chats} from "./pages/Chats.tsx";
+import { Profile } from "./pages/Profile.tsx";
+import { Chats } from "./pages/Chats.tsx";
 import NewChat from "./pages/NewChat.tsx";
 import Chat from "./pages/Chat.tsx";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout/>,
+        element: <Layout />,
         children: [
             {
                 path: "/",
-                element: <Profile/>
+                element: <Profile />
             },
             {
                 path: "/chats",
-                element: <Chats/>,
+                element: <Chats />,
             },
             {
                 path: "/chat-new",
-                element: <NewChat/>
+                element: <NewChat />
             },
             {
                 path: "/chat/:id",
-                element: <Chat/>
+                element: <Chat />
             }
         ]
     },
     {
         path: "/auth",
         element:
-            <Auth/>
+            <Auth />
     }
     ,
     {
         path: "*",
         element:
-            <NotFound/>
+            <NotFound />
     }
 ])

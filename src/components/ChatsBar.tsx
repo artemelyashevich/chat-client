@@ -1,8 +1,8 @@
 import React from 'react';
-import {IRoom} from "../types.ts";
-import {NavLink} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../hooks.ts";
-import {getRooms} from "../store/slices/roomSlice.ts";
+import { IRoom } from "../types.ts";
+import { NavLink } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks.ts";
+import { getRooms } from "../store/slices/roomSlice.ts";
 
 // TODO: тобавить уведомления о новых сообщениях
 
@@ -11,7 +11,7 @@ const ChatsBar: React.FC = () => {
     React.useEffect(() => {
         dispatch(getRooms())
     }, [])
-    const {rooms, loading} = useAppSelector(store => store.room)
+    const { rooms, loading } = useAppSelector(store => store.room)
     return (
         <React.Fragment>
             <ul className='chats'>

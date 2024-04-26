@@ -1,5 +1,5 @@
 import React from 'react';
-import {IMessage, IUser} from "../types.ts";
+import { IMessage, IUser } from "../types.ts";
 
 type TMessage = {
     message: IMessage,
@@ -8,7 +8,7 @@ type TMessage = {
 
 // TODO: пофиксить дату создания, попробовать добавить имя создателя сообщения
 
-const Message: React.FC<TMessage> = ({message, user}) => {
+const Message: React.FC<TMessage> = ({ message, user }) => {
     const dateCreated = new Date(String(message.createdAt)).toLocaleDateString()
     return (
         <li className={

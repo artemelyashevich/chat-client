@@ -1,9 +1,9 @@
 import React from "react"
-import {leftBarNavs} from "../../constants.tsx"
-import {NavLink, useNavigate} from "react-router-dom"
-import {BsDoorClosed} from "react-icons/bs";
-import {useAppDispatch} from "../../hooks.ts";
-import {logout} from "../../store/slices/authSlice.ts";
+import { leftBarNavs } from "../../constants.tsx"
+import { NavLink, useNavigate } from "react-router-dom"
+import { BsDoorClosed } from "react-icons/bs";
+import { useAppDispatch } from "../../hooks.ts";
+import { logout } from "../../store/slices/authSlice.ts";
 
 const LeftBar: React.FC = () => {
 
@@ -21,7 +21,7 @@ const LeftBar: React.FC = () => {
                 {
                     leftBarNavs.map(((x, index) => (
                         <li className="leftBar-item" key={index}>
-                            <NavLink to={x.path} className={({isActive}) =>
+                            <NavLink to={x.path} className={({ isActive }) =>
                                 isActive
                                     ? "leftBar-item leftBar-item-active"
                                     : "leftBar-item"
@@ -33,7 +33,7 @@ const LeftBar: React.FC = () => {
                 }
             </ul>
             <span className='leftBar-logout'>
-            <BsDoorClosed onClick={handleLogOut}/>
+                <BsDoorClosed onClick={handleLogOut} />
             </span>
         </section>
     );
