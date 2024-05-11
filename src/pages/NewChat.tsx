@@ -27,7 +27,6 @@ export const NewChat: React.FC = () => {
         }
     }
     const handleCreateChat = (): void => {
-        console.log(peopleList)
         const room: IRoom = {
             title: peopleList[0].name,
             // @ts-ignore
@@ -53,11 +52,12 @@ export const NewChat: React.FC = () => {
                         {
                             loading
                                 ? <p>Loading...</p>
-                                : people.length > 0 && people.map((user: IUser, index: number) => (
-                                    <li key={index}>
-                                        <h2>{user.name}</h2>
-                                        <h2>{user.email}</h2>
-                                        <button type="button" onClick={() => handleAddToChat(user)}>Add to chat</button>
+                                : people.length > 0 && people.map((u: IUser, index: number) => (
+                                    u._id !== user._id
+                                    && <li key={index}>
+                                        <h2>{u.name}</h2>
+                                        <h2>{u.email}</h2>
+                                        <button type="button" onClick={() => handleAddToChat(u)}>Add to chat</button>
                                     </li>
                                 ))
                         }

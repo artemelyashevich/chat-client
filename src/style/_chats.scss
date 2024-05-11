@@ -1,5 +1,5 @@
 .chats {
-  width: 10rem;
+  width: 15rem;
   height: 100%;
 
   &-content {
@@ -8,13 +8,13 @@
 
   a {
     text-decoration: none;
-    font-size: 30px;
+    font-size: 35px;
     color: #000;
   }
 
   li {
     border: 1px solid #eeee;
-    padding: 1rem 10px;
+    padding: 1.5rem 10px;
     background: #fff;
     cursor: pointer;
   }
@@ -22,7 +22,9 @@
   &Bar-item {
     li {
       font-size: 20px;
-      height: 4rem;
+      height: 4.4rem;
+      text-align: center;
+      padding: 20px 34px;
     }
 
     &-active {

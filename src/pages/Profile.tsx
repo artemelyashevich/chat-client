@@ -1,7 +1,7 @@
 import React from "react"
 import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { fetchMe } from "../store/slices/userSlice.ts";
-import { SlSettings } from "react-icons/sl";
+import { FaPencilAlt } from "react-icons/fa";
 import ProfileForm from "../components/ProfileForm.tsx";
 
 // TODO: добавить возможность изменять профиль
@@ -28,7 +28,7 @@ export const Profile: React.FC = () => {
                             </div>
                             <div className="profile__right">
                                 <span className={`profile__right-settings profile__right-settings${active && '-active'}`}>
-                                    <SlSettings onClick={() => setActive(!active)} />
+                                    <FaPencilAlt onClick={() => setActive(!active)} />
                                 </span>
                                 <ProfileForm user={user} active={active} setActive={setActive} />
                             </div>

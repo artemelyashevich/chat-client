@@ -4,14 +4,15 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  border-right: 1px solid #000;
+  border-right: 1px solid #eee;
+
 
   &-item {
     padding: 1rem;
     font-size: 30px;
     color: #b4b4ff;
-
     text-align: center;
+    border-bottom:1px solid #eee;
 
     :last-child {
       margin-bottom: 0;

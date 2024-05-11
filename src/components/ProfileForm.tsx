@@ -35,7 +35,7 @@ const ProfileForm: React.FC<TForm> = ({ user, active, setActive }) => {
                         <label>
                             <p>Image URL: </p>
                         </label>
-                        <input {...register('img')} placeholder='Image Url' type='text' defaultValue={user.image} />
+                        <input {...register('image')} placeholder='Image Url' type='text' defaultValue={user.image} />
                     </React.Fragment>}
             </div>
             <button className={`profile__right-form-button${active ? '-active' : ''}`} type='submit'>Save</button>

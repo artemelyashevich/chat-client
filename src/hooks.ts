@@ -1,9 +1,9 @@
-import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux"
-import { RootState, AppDispatch } from './store'
+import {useDispatch, useSelector, TypedUseSelectorHook} from "react-redux"
+import {RootState, AppDispatch} from './store'
 import React from "react"
-import { IMessage, IUser } from "./types.ts";
+import {IMessage, IUser} from "./types.ts";
 import io from "socket.io-client";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
@@ -12,11 +12,11 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export const useChat = () => {
     const params = useParams()
-    const { user } = useAppSelector(store => store.user)
+    const {user} = useAppSelector(store => store.user)
     const [users, setUsers] = React.useState<IUser[]>([])
     const [log, setLog] = React.useState<string | null>(null)
     const [messages, setMessages] = React.useState<IMessage[]>([])
-    const { current: socket } = React.useRef(
+    const {current: socket} = React.useRef(
         io("http://localhost:8080", {
             query: {
                 roomId: params.id,
@@ -25,7 +25,7 @@ export const useChat = () => {
         })
     )
 
-    React.useEffect(() => {
+    React.useMemo(() => {
         socket.emit('user:add', user)
         socket.emit('message:get')
         socket.on('log', (log): void => {
@@ -37,6 +37,7 @@ export const useChat = () => {
         socket.on('message_list:update', (messages): void => {
             setMessages(messages)
         })
+        console.log(messages)
     }, [])
 
     const sendMessage = (message: IMessage): void => {
@@ -49,5 +50,5 @@ export const useChat = () => {
         socket.emit('message:remove', message)
     }
 
-    return { users, messages, log, sendMessage, removeMessage }
+    return {users, messages, log, sendMessage, removeMessage}
 }

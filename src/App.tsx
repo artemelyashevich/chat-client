@@ -7,7 +7,9 @@ import './style/main.scss'
 
 const App: React.FC = () => {
   return (
-    <RouterProvider router={router} />
+    <div className='wrapper'>
+      <RouterProvider router={router} />
+    </div>
   )
 }
 

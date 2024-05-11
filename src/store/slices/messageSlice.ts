@@ -1,5 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { IMessage } from "../../types.ts";
+import {instance} from "../../axios.ts";
+
+export const getAllMessages = createAsyncThunk<IMessage[], string>(
+    'message/getAllMessages',
+    async (path: string): Promise<IMessage[]> => {
+        const response = await instance.get('/messages/' + path, )
+    }
+)
 
 type messageState = {
     loading: boolean,

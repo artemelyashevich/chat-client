@@ -14,7 +14,9 @@ const Chat: React.FC = () => {
     const { users, messages, log, sendMessage, removeMessage } = useChat()
     const { user } = useAppSelector(store => store.user)
 
-    console.log(messages)
+    React.useEffect(() =>{
+
+    }, [])
 
     const submit = (data: any): void => {
         // @ts-ignore

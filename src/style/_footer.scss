@@ -1,9 +1,10 @@
-footer {
-  background: $layoutBG;
+.footer {
+  background-color: #fff;
   padding: $mainPadding;
-  margin: $mainMargin auto;
-  color: $colorWhite;
+  margin: 0 auto;
+  color: #000;
   width: 95%;
   height: 10vh;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+  border: 1px solid #eee;
+  text-align: center;
 }
